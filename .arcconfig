@@ -1,0 +1,7 @@
+{
+  "phabricator.uri" : "https://phab.qub3d.org/",
+  "repository.callsign" : "C",
+  "load" : [
+    ".arclibs/cppcheck"
+  ]
+}
