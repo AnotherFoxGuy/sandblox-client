@@ -1,0 +1,13 @@
+**/bin
+**/build
+*.a
+*.o
+*.exe
+*.depend
+*.layout
+*.config
+*.kdev4
+!default.config
+
+
+\.vs/
