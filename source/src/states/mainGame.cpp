@@ -6,7 +6,9 @@
  */
 void mainGame::draw()
 {
-	
+	// Always remember to clear the window
+	glClearColor(0.0f,0.0f,0.5f,0.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 /*
@@ -14,17 +16,17 @@ void mainGame::draw()
  */
 void mainGame::update()
 {
-
+	
 }
 
 /*
  * Function for handling the GameState's events
  */
-void mainGame::handleEvent(SDL_Event *event)
+void mainGame::handleEvent(SDL_Event &event)
 {
-	if( event->type == SDL_WINDOWEVENT )
+	if( event.type == SDL_WINDOWEVENT )
 	{
-		switch( event->window.event )
+		switch( event.window.event )
 		{
 			case SDL_WINDOWEVENT_CLOSE:
 				// Yes the window should close.

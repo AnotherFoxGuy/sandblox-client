@@ -29,7 +29,7 @@ public:
 	// This calls the current GameState's update function.
 	void update();
 
-	void handleEvent(SDL_Event *event);
+	void handleEvent(SDL_Event &event);
 
 	// These functions are for handling the GameState stack.
 

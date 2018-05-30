@@ -15,13 +15,15 @@
 class SandBlox
 {
 public:
-		SandBlox();
-		~SandBlox();
+	SandBlox();
+	~SandBlox();
 	
 	void run();
 	
 	bool isRunning();
 	void setIsRunning(bool isRunning);
+	
+	gameStateManager* getStateManager();
 	
 private:
 	
@@ -29,11 +31,9 @@ private:
 	void mainGameLoop();
 	void quitGame();
 	
-	
-	
 protected:
-	bool m_isRunning;
-	std::unique_ptr<gameStateManager> m_stateManager;
-	SDL_Window* m_mainWindow;
+	bool m_isRunning = false;
+	gameStateManager *m_stateManager;
+	SDL_Window *m_mainWindow = nullptr;
 	
 };

@@ -50,7 +50,7 @@ void gameStateManager::update()
 /*
  * Function for handling the current state's events
  */
-void gameStateManager::handleEvent(SDL_Event *event)
+void gameStateManager::handleEvent(SDL_Event &event)
 {
 	m_stateStack.back()->handleEvent(event);
 }

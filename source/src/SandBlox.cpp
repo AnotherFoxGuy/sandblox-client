@@ -1,15 +1,14 @@
 #include "SandBlox.hpp"
-#include "GL/glew.h"
 #include <cstdlib>
 
 SandBlox::SandBlox()
 {
-	m_mainWindow = nullptr;
+	
 }
 
 SandBlox::~SandBlox()
 {
-
+	delete m_stateManager;
 }
 
 void SandBlox::run()
@@ -27,6 +26,11 @@ bool SandBlox::isRunning()
 void SandBlox::setIsRunning(bool isRunning)
 {
 	m_isRunning = isRunning;
+}
+
+gameStateManager* SandBlox::getStateManager()
+{
+	return m_stateManager;
 }
 
 void SandBlox::initSystems()
@@ -64,11 +68,11 @@ void SandBlox::initSystems()
 	// Print out openGL version for confirmation
 	fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 	
-	glewExperimental = true;
+	glewExperimental = GL_TRUE;
 	
 	//----------------member variables------------------
 	
-	m_stateManager = std::unique_ptr<gameStateManager>(new gameStateManager());
+	m_stateManager = new gameStateManager();
 	
 	m_stateManager->init();
 
@@ -81,17 +85,17 @@ void SandBlox::mainGameLoop()
 
 	while( m_isRunning )
 	{
-
+		// Handle all the events
 		SDL_Event event;
-
 		while( SDL_PollEvent( &event ) )
 		{
-			m_stateManager->handleEvent(&event);
+			m_stateManager->handleEvent(event);
 		}
 		
-		glClearColor(0.0f,0.0f,0.0f,0.0f);
-		SDL_GL_SwapWindow(m_mainWindow);
+		m_stateManager->draw();
+		m_stateManager->update();
 		
+		SDL_GL_SwapWindow(m_mainWindow);
 	}
 }
 

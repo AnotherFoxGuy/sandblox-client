@@ -1,7 +1,8 @@
-#include <cstdio>
-#include <memory>
 #include "SandBlox.hpp"
 #include "globalVars.hpp"
+
+#include <cstdio>
+#include <memory>
 
 int main()
 {

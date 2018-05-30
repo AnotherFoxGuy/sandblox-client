@@ -49,15 +49,15 @@ endif()
 
 # Detect a CPU architecture to target in order to make unrecognizable executables a thing.
 if (${32BIT} STREQUAL ON)
-  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m32")
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -m32")
   set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -m32")
   set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -m32")
-  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -m32")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m32")
 elseif (${64BIT} STREQUAL ON)
-  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m64")
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -m64")
   set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -m64")
   set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -m64")
-  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -m64")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m64")
 endif()
 
 # Set include, library, and source directories.
@@ -65,49 +65,59 @@ endif()
 set(source_dir ${PROJECT_SOURCE_DIR}/source/src)
 
 set(client_sources
-	${source_dir}/states/mainGame.cpp
-	${source_dir}/states/mainMenu.cpp
 	${source_dir}/gameStateManager.cpp
 	${source_dir}/globalVars.cpp
 	${source_dir}/main.cpp
-	${source_dir}/SandBlox.cpp)
+	${source_dir}/SandBlox.cpp
+	${source_dir}/states/mainGame.cpp
+	${source_dir}/states/mainMenu.cpp
+	${source_dir}/gui/gui.cpp)
 	
 find_package(SDL2)
-find_package(PAWLIB)
 
 set(include_dirs
-	${source_dir}/../include
+	${PROJECT_SOURCE_DIR}/../cegui-0.8.4/cegui/include
 	${PROJECT_SOURCE_DIR}/../cpgf-1.5.6/include
-	${PAWLIB_INCLUDE_DIR}
+	${PROJECT_SOURCE_DIR}/../glew-2.1.0/include
 	${PROJECT_SOURCE_DIR}/../glm-0.9.9-a2
 	${SDL2_INCLUDE_DIR}
-	${PROJECT_SOURCE_DIR}/../glew-2.1.0/include)
+	${source_dir}/../include)
 
 message(${include_dirs})
-	
+
 if (UNIX AND NOT APPLE)
 	find_package(X11 REQUIRED)
 	find_package(Threads REQUIRED)
 	set(library_dirs
-		${PROJECT_SOURCE_DIR}/../cpgf-1.5.6/lib/libcpgf.a
-		${PAWLIB_LIBRARY}
-		${SDL2_LIBRARY}
-		${PROJECT_SOURCE_DIR}/../glew-2.1.0/lib/libglew32.a
 		${CMAKE_DL_LIBS}
 		${CMAKE_THREAD_LIBS_INIT}
+		${PROJECT_SOURCE_DIR}/../glew-2.1.0/lib/libglew32.a
+		${SDL2_LIBRARY}
 		${X11_LIBRARIES}
-		${X11_Xxf86vm_LIB}
-		${X11_Xrandr_LIB}
-		${X11_Xinerama_LIB}
 		${X11_Xcursor_LIB}
+		${X11_Xinerama_LIB}
+		${X11_Xrandr_LIB}
+		${X11_Xxf86vm_LIB}
+		${PROJECT_SOURCE_DIR}/../cpgf-1.5.6/lib/libcpgf.a
 	)
 else()
 	set(library_dirs
-		${PROJECT_SOURCE_DIR}/../cpgf-1.5.6/lib/libcpgf.a
-		${PAWLIB_LIBRARY}
+		${PROJECT_SOURCE_DIR}/../glew-2.1.0/build/lib/libglew32.a
 		${SDL2_LIBRARY}
-		${PROJECT_SOURCE_DIR}/../glew-2.1.0/build/lib/libglew32.a)
+		${PROJECT_SOURCE_DIR}/../cpgf-1.5.6/lib/libcpgf.a)
 endif()# UNIX AND NOT APPLE
+
+#add the CEGUI libraries
+set(library_dirs
+	${library_dirs}
+	${PROJECT_SOURCE_DIR}/../cegui-0.8.4/lib/libCEGUIBase-0.dll.a
+	${PROJECT_SOURCE_DIR}/../cegui-0.8.4/lib/libCEGUICommonDialogs-0.dll.a
+	${PROJECT_SOURCE_DIR}/../cegui-0.8.4/lib/libCEGUICoreWindowRendererSet.dll.a
+	${PROJECT_SOURCE_DIR}/../cegui-0.8.4/lib/libCEGUIExpatParser.dll.a
+	${PROJECT_SOURCE_DIR}/../cegui-0.8.4/lib/libCEGUIOpenGLRenderer-0.dll.a
+	${PROJECT_SOURCE_DIR}/../cegui-0.8.4/lib/libCEGUISILLYImageCodec.dll.a
+	)
+
 
 #SDL2 needs these libs if on Windows
 if(WIN32)
@@ -116,9 +126,9 @@ if(WIN32)
 		imm32.lib
 		ole32.lib
 		oleaut32.lib
-		winmm.lib
+		opengl32.lib
 		version.lib
-		opengl32.lib)
+		winmm.lib)
 endif()# WIN32
 
 # Link the "SandBlox" binary.
