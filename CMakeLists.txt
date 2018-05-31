@@ -71,6 +71,7 @@ set(client_sources
 	${source_dir}/SandBlox.cpp
 	${source_dir}/states/mainGame.cpp
 	${source_dir}/states/mainMenu.cpp
+	${source_dir}/states/stateMap.cpp
 	${source_dir}/gui/gui.cpp)
 	
 find_package(SDL2)
@@ -79,6 +80,7 @@ set(include_dirs
 	${PROJECT_SOURCE_DIR}/../cegui-0.8.4/cegui/include
 	${PROJECT_SOURCE_DIR}/../cpgf-1.5.6/include
 	${PROJECT_SOURCE_DIR}/../glew-2.1.0/include
+	${PROJECT_SOURCE_DIR}/../pawlib/pawlib-source/include
 	${PROJECT_SOURCE_DIR}/../glm-0.9.9-a2
 	${SDL2_INCLUDE_DIR}
 	${source_dir}/../include)
@@ -103,6 +105,7 @@ if (UNIX AND NOT APPLE)
 else()
 	set(library_dirs
 		${PROJECT_SOURCE_DIR}/../glew-2.1.0/build/lib/libglew32.a
+		${PROJECT_SOURCE_DIR}/../lib/libpawlib.a
 		${SDL2_LIBRARY}
 		${PROJECT_SOURCE_DIR}/../cpgf-1.5.6/lib/libcpgf.a)
 endif()# UNIX AND NOT APPLE

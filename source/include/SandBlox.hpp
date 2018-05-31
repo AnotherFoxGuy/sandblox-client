@@ -8,7 +8,7 @@
 
 #include <memory>
 #include <cstdio>
-
+#include <pawlib/iochannel.hpp>
 #include "SDL.h"
 #include "gameStateManager.hpp"
 
@@ -19,21 +19,22 @@ public:
 	~SandBlox();
 	
 	void run();
-	
+
 	bool isRunning();
+	
 	void setIsRunning(bool isRunning);
 	
-	gameStateManager* getStateManager();
-	
+	std::shared_ptr<gameStateManager> getStateManager();
+
 private:
-	
+
 	void initSystems();
 	void mainGameLoop();
 	void quitGame();
 	
 protected:
 	bool m_isRunning = false;
-	gameStateManager *m_stateManager;
-	SDL_Window *m_mainWindow = nullptr;
-	
+	std::shared_ptr<gameStateManager> m_stateManager;
+	SDL_Window* m_mainWindow = nullptr;
+
 };

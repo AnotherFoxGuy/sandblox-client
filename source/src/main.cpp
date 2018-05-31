@@ -1,18 +1,17 @@
 #include "SandBlox.hpp"
 #include "globalVars.hpp"
 
-#include <cstdio>
-#include <memory>
+#define BOLD_GREEN pawlib::ta_bold << pawlib::fg_green
 
 int main()
 {
 	//temp logging until we get Pawlib's loggers working
-	printf("Starting SandBlox Client.\n");
-	
-	g_Client = std::unique_ptr<SandBlox>(new SandBlox());
-	
+	pawlib::ioc << BOLD_GREEN << "Starting SandBlox Client." << pawlib::io_end;
+
+	g_Client = std::unique_ptr<SandBlox>( new SandBlox() );
+
 	g_Client->run();
-	
-	printf("Exiting SandBlox Client.\n");
+
+	pawlib::ioc << BOLD_GREEN << "Exiting SandBlox Client." << pawlib::io_end;
 	return 0;
 }

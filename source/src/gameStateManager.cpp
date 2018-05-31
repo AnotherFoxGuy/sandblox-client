@@ -5,9 +5,7 @@
  */
 gameStateManager::gameStateManager()
 {
-	// Initialize the gamestates for Qub3d
-	m_mainMenu = std::unique_ptr<mainMenu>(new mainMenu());
-	m_mainGame = std::unique_ptr<mainGame>(new mainGame());
+	m_stateMap = std::shared_ptr<stateMap>( new stateMap() );
 }
 
 /*
@@ -18,13 +16,22 @@ gameStateManager::~gameStateManager()
 
 }
 
-void gameStateManager::init()
+void gameStateManager::init( const string_t& name )
 {
+
+	// Initialize the gamestates for SandBlox
+	m_stateMap->initStateMap();
 	// Push the main menu onto the stack
-	m_stateStack.push_back(m_mainMenu.get());
+	m_stateStack.push_back( m_stateMap->getStateByName( name ) );
 	// Run the entry code
 	m_stateStack.back()->enter();
 }
+
+std::shared_ptr<stateMap> gameStateManager::getStateMap()
+{
+	return m_stateMap;
+}
+
 
 
 //-------------------------------------------------------//
@@ -50,9 +57,9 @@ void gameStateManager::update()
 /*
  * Function for handling the current state's events
  */
-void gameStateManager::handleEvent(SDL_Event &event)
+void gameStateManager::handleEvent( SDL_Event& event )
 {
-	m_stateStack.back()->handleEvent(event);
+	m_stateStack.back()->handleEvent( event );
 }
 
 //-------------------------------------------------------//
@@ -62,13 +69,13 @@ void gameStateManager::handleEvent(SDL_Event &event)
 /*
  * Push a state onto the front of the stack
  */
-void gameStateManager::pushState(GameState *newState)
+void gameStateManager::pushState( const string_t& newState )
 {
 	// Run the old GameState's exit code before switching.
 	m_stateStack.back()->exit();
 
 	// Push a new GameState onto the stack
-	m_stateStack.push_back(newState);
+	m_stateStack.push_back( m_stateMap->getStateByName( newState ) );
 
 	// Run the new GameState's entry code.
 	m_stateStack.back()->enter();
@@ -92,31 +99,15 @@ void gameStateManager::popState()
 /*
  * Set the current state directly
  */
-void gameStateManager::setCurrentState(GameState* newState)
+void gameStateManager::setCurrentState( const string_t& newState )
 {
 	// Run the old GameState's exit code before switching.
 	m_stateStack.back()->exit();
 
 	// Set the new GameState directly
-	m_stateStack.back() = newState;
+	m_stateStack.back() = m_stateMap->getStateByName( newState );
 
 	// Run the new GameState's entry code.
 	m_stateStack.back()->enter();
 
-}
-
-//-------------------------------------------------------//
-//                     State Getters                     //
-//-------------------------------------------------------//
-
-mainMenu* gameStateManager::getMainMenu()
-{
-	// Get the pointer via std::uniqur_ptr's get() method
-	return m_mainMenu.get();
-}
-
-mainGame* gameStateManager::getMainGame()
-{
-	// Get the pointer via std::uniqur_ptr's get() method
-	return m_mainGame.get();
 }
