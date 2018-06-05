@@ -5,13 +5,13 @@
 #include "CEGUI/RendererModules/OpenGL/GL3Renderer.h"
 
 
-class mainMenu : public GameState
+class mainScreen : public GameState
 {
 public:
 
 	// Constructor and destructor
-	mainMenu(){}
-	~mainMenu()
+	mainScreen(){}
+	~mainScreen()
 	{
 		// Safety first as they say!
 		m_gui.destroy();

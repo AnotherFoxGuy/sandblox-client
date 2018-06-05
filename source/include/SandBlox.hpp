@@ -9,6 +9,7 @@
 #include <memory>
 #include <cstdio>
 #include <pawlib/iochannel.hpp>
+#include <GL/glew.h>
 #include "SDL.h"
 #include "gameStateManager.hpp"
 

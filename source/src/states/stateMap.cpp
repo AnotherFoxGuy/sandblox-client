@@ -1,6 +1,9 @@
 #include "states/stateMap.hpp"
-#include "states/mainGame.hpp"
-#include "states/mainMenu.hpp"
+#include "states/playingScreen.hpp"
+#include "states/mainScreen.hpp"
+#include "states/optionsScreen.hpp"
+#include "states/singlePlayerScreen.hpp"
+#include "states/multiPlayerScreen.hpp"
 
 stateMap::~stateMap()
 {
@@ -10,8 +13,11 @@ stateMap::~stateMap()
 void stateMap::initStateMap()
 {
 	// We insert a GameState object into the map for each state
-	m_stateMap.insert( std::make_pair( "mainMenu", std::shared_ptr<GameState>(new mainMenu() ) ) );
-	m_stateMap.insert( std::make_pair( "mainGame", std::shared_ptr<GameState>(new mainGame() ) ) );
+	m_stateMap.insert( std::make_pair( "mainScreen", std::shared_ptr<GameState>(new mainScreen() ) ) );
+	m_stateMap.insert( std::make_pair( "playingScreen", std::shared_ptr<GameState>(new playingScreen() ) ) );
+	m_stateMap.insert( std::make_pair( "singlePlayerScreen", std::shared_ptr<GameState>(new singlePlayerScreen() ) ) );
+	m_stateMap.insert( std::make_pair( "multiPlayerScreen", std::shared_ptr<GameState>(new multiPlayerScreen() ) ) );
+	m_stateMap.insert( std::make_pair( "optionsScreen", std::shared_ptr<GameState>(new optionsScreen() ) ) );
 }
 
 std::map<std::string, std::shared_ptr<GameState> >* stateMap::getStateMap()

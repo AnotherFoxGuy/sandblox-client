@@ -83,7 +83,7 @@ void SandBlox::initSystems()
 
 	m_stateManager = std::shared_ptr<gameStateManager>( new gameStateManager() ) ;
 
-	m_stateManager->init( "mainMenu" );
+	m_stateManager->init( "mainScreen" );
 
 	ioc << fg_blue << "Systems Initialized" << io_end;
 }

@@ -1,28 +1,27 @@
-#include "states/mainGame.hpp"
-#include "globalVars.hpp"
+#include "states/singlePlayerScreen.hpp"
 
 /*
  * Function for drawing the GameState
  */
-void mainGame::draw()
+void singlePlayerScreen::draw()
 {
 	// Always remember to clear the window
-	glClearColor( 0.0f, 0.0f, 0.5f, 0.0f );
+	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
 }
 
 /*
  * Function for updating the GameState
  */
-void mainGame::update()
+void singlePlayerScreen::update()
 {
-
+	
 }
 
 /*
  * Function for handling the GameState's events
  */
-void mainGame::handleEvent( SDL_Event& event )
+void singlePlayerScreen::handleEvent( SDL_Event& event )
 {
 	if ( event.type == SDL_WINDOWEVENT )
 	{
@@ -38,7 +37,7 @@ void mainGame::handleEvent( SDL_Event& event )
 /*
  * This runs immeadiately after the GameStateManager changes states.
  */
-void mainGame::enter()
+void singlePlayerScreen::enter()
 {
 
 }
@@ -46,7 +45,7 @@ void mainGame::enter()
 /*
  * This runs before the GameStateManager changes states.
  */
-void mainGame::exit()
+void singlePlayerScreen::exit()
 {
 
 }

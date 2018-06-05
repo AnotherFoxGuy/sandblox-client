@@ -1,13 +1,13 @@
 #include "globalVars.hpp"
-#include "states/mainMenu.hpp"
+#include "states/mainScreen.hpp"
 #include <cstdio>
 
 // This unused param HAS to be here for CEGUI's sake
-bool mainMenu::onExitClicked( const CEGUI::EventArgs& e )
+bool mainScreen::onExitClicked( const CEGUI::EventArgs& e )
 {
 	// Use this line to suppress the unused variable warning.
 	( void )( e );
-	g_Client->getStateManager()->pushState( "mainGame" );
+	g_Client->getStateManager()->pushState( "playingScreen" );
 	return true;
 }
 
@@ -15,7 +15,7 @@ bool mainMenu::onExitClicked( const CEGUI::EventArgs& e )
 /*
  * Function for drawing the main menu
  */
-void mainMenu::draw()
+void mainScreen::draw()
 {
 	// Always remember to clear the window
 	glClearColor( 0.0f, 0.5f, 0.0f, 0.0f );
@@ -28,7 +28,7 @@ void mainMenu::draw()
 /*
  * Function for updating the main menu
  */
-void mainMenu::update()
+void mainScreen::update()
 {
 	// Update the GUI(s)
 	m_gui.update();
@@ -38,7 +38,7 @@ void mainMenu::update()
  * Function for handling the GameState's events
  */
 
-void mainMenu::handleEvent( SDL_Event& event )
+void mainScreen::handleEvent( SDL_Event& event )
 {
 	if ( event.type == SDL_WINDOWEVENT )
 	{
@@ -58,7 +58,7 @@ void mainMenu::handleEvent( SDL_Event& event )
 /*
  * This runs immeadiately after the GameStateManager changes states.
  */
-void mainMenu::enter()
+void mainScreen::enter()
 {
 	// Testing GUIs -----------------------------------------------------------------
 	m_gui = GUI();
@@ -73,7 +73,7 @@ void mainMenu::enter()
 
 	ExitButton->setText( "Exit Game" );
 
-	ExitButton->subscribeEvent( CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber( &mainMenu::onExitClicked, this ) );
+	ExitButton->subscribeEvent( CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber( &mainScreen::onExitClicked, this ) );
 
 	m_gui.setMouseCursor( "TaharezLook/MouseArrow" );
 	m_gui.showMouseCursor();
@@ -83,7 +83,7 @@ void mainMenu::enter()
 /*
  * This runs before the GameStateManager changes states.
  */
-void mainMenu::exit()
+void mainScreen::exit()
 {
 	// Safety first!
 	m_gui.destroy();

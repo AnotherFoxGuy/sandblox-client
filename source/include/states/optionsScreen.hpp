@@ -1,12 +1,14 @@
 #pragma once
 #include "states/GameState.hpp"
+#include "globalVars.hpp"
+#include <GL/glew.h>
 
-class mainGame : public GameState
+class optionsScreen : public GameState
 {
 public:
 	// Constructor and destructor
-	mainGame() {}
-	~mainGame() {}
+	optionsScreen() {}
+	~optionsScreen() {}
 
 	// More functions to come soon
 
@@ -19,5 +21,4 @@ public:
 	// State switching helper functions
 	void enter() override;
 	void exit() override;
-
 };

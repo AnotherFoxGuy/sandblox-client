@@ -3,9 +3,6 @@
 #include <memory>
 #include "states/GameState.hpp"
 #include "states/stateMap.hpp"
-#include "states/mainGame.hpp"
-#include "states/mainMenu.hpp"
-
 /*
 * This class allows for easy management of
 * the different states that the game might
