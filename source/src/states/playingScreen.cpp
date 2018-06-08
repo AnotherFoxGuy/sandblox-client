@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include "states/playingScreen.hpp"
 
 /*
@@ -33,13 +34,20 @@ void playingScreen::handleEvent( SDL_Event& event )
 				break;
 		}
 	}
+	std::shared_ptr<Command> inputCommand = m_inputHandler->handleInput(event);
+	// if the command is null, that means nothing happened or something happened that was not handled.
+	if (inputCommand != nullptr)
+	{
+		inputCommand->execute(event);
+	}
 }
 /*
  * This runs immeadiately after the GameStateManager changes states.
  */
 void playingScreen::enter()
 {
-
+	m_inputHandler->initCommandMap();
+	m_inputHandler->initInputCommands();
 }
 
 /*
@@ -47,5 +55,5 @@ void playingScreen::enter()
  */
 void playingScreen::exit()
 {
-
+	
 }

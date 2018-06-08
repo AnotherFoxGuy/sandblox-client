@@ -69,6 +69,7 @@ set(client_sources
 	${source_dir}/globalVars.cpp
 	${source_dir}/main.cpp
 	${source_dir}/SandBlox.cpp
+	${source_dir}/input/inputHandler.cpp
 	${source_dir}/states/mainScreen.cpp
 	${source_dir}/states/multiPlayerScreen.cpp
 	${source_dir}/states/optionsScreen.cpp

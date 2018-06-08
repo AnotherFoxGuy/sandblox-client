@@ -1,13 +1,17 @@
 #pragma once
 #include "states/GameState.hpp"
+#include "input/inputHandler.hpp"
 #include "globalVars.hpp"
-#include <GL/glew.h>
 
 class playingScreen : public GameState
 {
 public:
 	// Constructor and destructor
-	playingScreen() {}
+	playingScreen() 
+	: m_inputHandler(std::unique_ptr<inputHandler>(new inputHandler()))
+	{
+		
+	}
 	~playingScreen() {}
 
 	// More functions to come soon
@@ -21,5 +25,8 @@ public:
 	// State switching helper functions
 	void enter() override;
 	void exit() override;
+	
+protected:
+	std::unique_ptr<inputHandler> m_inputHandler;
 
 };
