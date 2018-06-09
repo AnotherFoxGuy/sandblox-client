@@ -1,5 +1,6 @@
 **/bin
 **/build
+**/nbproject
 *.a
 *.o
 *.exe
@@ -7,6 +8,7 @@
 *.layout
 *.config
 *.kdev4
+*.log
 !default.config
 
 
