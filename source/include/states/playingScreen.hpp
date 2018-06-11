@@ -1,4 +1,5 @@
 #pragma once
+#include "states/playingScreenStates.hpp"
 #include "states/GameState.hpp"
 #include "input/inputHandler.hpp"
 #include "globalVars.hpp"
@@ -14,7 +15,7 @@ public:
 	}
 	~playingScreen() {}
 
-	// More functions to come soon
+	void shouldCloseWindow(SDL_Event& event);
 
 	// Override functions from the parent GameState class
 	void draw() override;
@@ -29,4 +30,6 @@ public:
 protected:
 	std::unique_ptr<inputHandler> m_inputHandler;
 
+protected:
+	playingState m_playingState = playingState::PLAYING;
 };
