@@ -1,8 +1,5 @@
 #pragma once
 #include "states/GameState.hpp"
-#include "gui/gui.hpp"
-#include "CEGUI/CEGUI.h"
-#include "CEGUI/RendererModules/OpenGL/GL3Renderer.h"
 
 
 class mainScreen : public GameState
@@ -13,12 +10,7 @@ public:
 	mainScreen(){}
 	~mainScreen()
 	{
-		// Safety first as they say!
-		m_gui.destroy();
-	}
-
-	// Testing only, this will be removed later once things start coming together
-	bool onExitClicked( const CEGUI::EventArgs& e );
+        }
 
 	// Override functions from the GameState parent class
 	// Game Runtime Functions
@@ -31,6 +23,5 @@ public:
 	void exit() override;
 
 protected:
-	GUI m_gui;
 
 };

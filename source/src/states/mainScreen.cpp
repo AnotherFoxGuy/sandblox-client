@@ -2,16 +2,6 @@
 #include "states/mainScreen.hpp"
 #include <cstdio>
 
-// This unused param HAS to be here for CEGUI's sake
-bool mainScreen::onExitClicked( const CEGUI::EventArgs& e )
-{
-	// Use this line to suppress the unused variable warning.
-	( void )( e );
-	g_Client->getStateManager()->pushState( "playingScreen" );
-	return true;
-}
-
-
 /*
  * Function for drawing the main menu
  */
@@ -20,9 +10,6 @@ void mainScreen::draw()
 	// Always remember to clear the window
 	glClearColor( 0.0f, 0.5f, 0.0f, 0.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
-
-	// Draw the GUI, duh
-	m_gui.draw();
 }
 
 /*
@@ -30,8 +17,6 @@ void mainScreen::draw()
  */
 void mainScreen::update()
 {
-	// Update the GUI(s)
-	m_gui.update();
 }
 
 /*
@@ -50,34 +35,13 @@ void mainScreen::handleEvent( SDL_Event& event )
 				break;
 		}
 	}
-
-	// Pass the event into the GUI
-	m_gui.onSDLEvent( event );
 }
 
 /*
- * This runs immeadiately after the GameStateManager changes states.
+ * This runs immediately after the GameStateManager changes states.
  */
 void mainScreen::enter()
 {
-	// Testing GUIs -----------------------------------------------------------------
-	m_gui = GUI();
-	m_gui.init( "C:/Qub3d/Qub3d/sandblox-client/development_game/Dev_Game/GUI" );
-
-	m_gui.loadScheme( "TaharezLook.scheme" );
-
-	m_gui.setFont( "DejaVuSans-10" );
-
-	CEGUI::PushButton* ExitButton = static_cast<CEGUI::PushButton*>( m_gui.createWidget(
-										"TaharezLook/Button", glm::vec4( .475f, .45f, .1f, .05f ), glm::vec4( 0.0f ), "ExitButton" ) );
-
-	ExitButton->setText( "Exit Game" );
-
-	ExitButton->subscribeEvent( CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber( &mainScreen::onExitClicked, this ) );
-
-	m_gui.setMouseCursor( "TaharezLook/MouseArrow" );
-	m_gui.showMouseCursor();
-	//--------------------------------------------------------------------------------
 }
 
 /*
@@ -85,6 +49,4 @@ void mainScreen::enter()
  */
 void mainScreen::exit()
 {
-	// Safety first!
-	m_gui.destroy();
 }

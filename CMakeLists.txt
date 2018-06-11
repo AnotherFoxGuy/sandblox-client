@@ -75,8 +75,7 @@ set(client_sources
 	${source_dir}/states/optionsScreen.cpp
 	${source_dir}/states/playingScreen.cpp
 	${source_dir}/states/singlePlayerScreen.cpp
-	${source_dir}/states/stateMap.cpp
-	${source_dir}/gui/gui.cpp)
+	${source_dir}/states/stateMap.cpp)
 	
 find_package(SDL2)
 
