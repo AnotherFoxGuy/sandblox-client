@@ -13,3 +13,7 @@
 
 
 \.vs/
+
+\.idea/
+
+cmake-build-debug/

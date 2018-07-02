@@ -9,7 +9,7 @@ class stateMap
 {
 public:
 	stateMap() {}
-	~stateMap();
+	~stateMap() {};
 
 	void initStateMap();
 

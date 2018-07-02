@@ -5,11 +5,6 @@
 #include "states/singlePlayerScreen.hpp"
 #include "states/multiPlayerScreen.hpp"
 
-stateMap::~stateMap()
-{
-	
-}
-
 void stateMap::initStateMap()
 {
 	// We insert a GameState object into the map for each state

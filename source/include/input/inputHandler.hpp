@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 #include <memory>
-#include <SDL_events.h>
+#include <SDL2/SDL_events.h>
 #include "input/command.hpp"
 
 class inputHandler

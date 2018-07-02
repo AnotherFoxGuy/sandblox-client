@@ -26,11 +26,9 @@ Thank you also to our many contributors!
 
 This project depends on the following libraries:
 
-* SDL2-2.0.8
-* CEGUI 0.8.4
-* GLEW-2.1.0
-* GLM-0.9.9-a2
-* and of course, the Qub³dEngine
+* OpenGL 
+* SDL2 
+* GLEW 
 
 Our documentation is written in [Sphinx](http://www.sphinx-doc.org/).
 

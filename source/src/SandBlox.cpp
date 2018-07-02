@@ -1,5 +1,6 @@
 #include "SandBlox.hpp"
 #include <cstdlib>
+#include <SDL2/SDL.h>
 
 SandBlox::SandBlox()
 {

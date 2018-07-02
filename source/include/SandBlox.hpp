@@ -10,7 +10,7 @@
 #include <cstdio>
 #include <pawlib/iochannel.hpp>
 #include <GL/glew.h>
-#include "SDL.h"
+#include <SDL2/SDL.h>
 #include "gameStateManager.hpp"
 
 class SandBlox
